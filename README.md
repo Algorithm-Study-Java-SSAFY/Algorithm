@@ -16,7 +16,7 @@
 
 > ### [코딩테스트 연습 - 더 맵게](https://school.programmers.co.kr/learn/courses/30/lessons/42626)
 
->[김주용](https://github.com/Algorithm-Study-Java-SSAFY/Algorithm/blob/main/%EA%B9%80%EC%A3%BC%EC%9A%A9/%ED%9E%99/%EB%8D%94%EB%A7%B5%EA%B2%8C.java)
+[김주용](https://github.com/Algorithm-Study-Java-SSAFY/Algorithm/blob/main/%EA%B9%80%EC%A3%BC%EC%9A%A9/%ED%9E%99/%EB%8D%94%EB%A7%B5%EA%B2%8C.java)
 
 ## `과제 문제`
 
