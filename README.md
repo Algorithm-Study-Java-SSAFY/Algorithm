@@ -12,7 +12,7 @@
 
 > ### [코딩테스트 연습 - 같은 숫자는 싫어](https://school.programmers.co.kr/learn/courses/30/lessons/12906)
 
-  [김주용](https://github.com/Algorithm-Study-Java-SSAFY/Algorithm/blob/main/%EA%B9%80%EC%A3%BC%EC%9A%A9/%EC%8A%A4%ED%83%9D/%EA%B0%99%EC%9D%80%EC%88%AB%EC%9E%90%EB%8A%94%EC%8B%AB%EC%96%B4.java)
+- [김주용](https://github.com/Algorithm-Study-Java-SSAFY/Algorithm/blob/main/%EA%B9%80%EC%A3%BC%EC%9A%A9/%EC%8A%A4%ED%83%9D/%EA%B0%99%EC%9D%80%EC%88%AB%EC%9E%90%EB%8A%94%EC%8B%AB%EC%96%B4.java)
 
 > ### [코딩테스트 연습 - 더 맵게](https://school.programmers.co.kr/learn/courses/30/lessons/42626)
 [김주용](https://github.com/Algorithm-Study-Java-SSAFY/Algorithm/blob/main/%EA%B9%80%EC%A3%BC%EC%9A%A9/%ED%9E%99/%EB%8D%94%EB%A7%B5%EA%B2%8C.java)
