@@ -2,7 +2,7 @@
 
 ## `개념`
 
-[[JAVA] Hash | Stack | Queue | Heap](https://www.notion.so/JAVA-Hash-Stack-Queue-Heap-3397afceff3942418f5f2b2bba5e9a49)
+### [[JAVA] Hash | Stack | Queue | Heap](https://www.notion.so/JAVA-Hash-Stack-Queue-Heap-3397afceff3942418f5f2b2bba5e9a49)
 
 ## `기본 문제`
 
