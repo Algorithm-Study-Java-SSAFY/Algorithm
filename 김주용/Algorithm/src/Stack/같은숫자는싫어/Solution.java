@@ -1,7 +1,8 @@
+package Stack.같은숫자는싫어;
+
 import java.util.*;
 
-
-class Solution {
+public class Solution {
     public int[] solution(int []arr) {
         int[] answer = {};
 
@@ -12,7 +13,7 @@ class Solution {
                 stack.push(arr[i]);
             }
         }
-        
+
         answer = new int[stack.size()];
         for (int i = 0; i < stack.size(); i++) {
             answer[i] = stack.get(i);
