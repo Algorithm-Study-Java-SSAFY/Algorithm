@@ -1,4 +1,4 @@
-package com.study01;
+package com.study01.Bj10799;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
