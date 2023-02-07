@@ -1,4 +1,4 @@
-package Stack.쇠막대기_10799;
+package Stack_Queue.쇠막대기_10799;
 
 import java.io.*;
 import java.util.Stack;

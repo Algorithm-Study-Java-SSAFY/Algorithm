@@ -1,4 +1,4 @@
-package Stack.같은숫자는싫어;
+package Stack_Queue.같은숫자는싫어;
 
 import java.util.*;
 
