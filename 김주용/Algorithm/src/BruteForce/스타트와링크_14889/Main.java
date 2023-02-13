@@ -45,7 +45,7 @@ public class Main {
         }
         return answer;
     }
-
+    // 조합: 두 개의 팀으로 나누는 경우
     public static void makeTeam(boolean[] visited, int cur, int n, int r) {
         if (r == 0) {
             teamList.add(visited.clone());
@@ -58,7 +58,7 @@ public class Main {
             visited[i] = false;
         }
     }
-
+    // 점수 계산
     public static int getScore(List<Integer> teamA, List<Integer> teamB){
         int scoreA = 0;
         int scoreB = 0;
