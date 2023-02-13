@@ -1,3 +1,5 @@
+package Hash.완주하지못한선수;
+
 import java.util.*;
 
 class Solution {
@@ -12,7 +14,7 @@ class Solution {
         for (String name : completion) {
             participantHash.put(name, participantHash.get(name) - 1);
         }
-        
+
         for (Map.Entry<String, Integer> entry: participantHash.entrySet()) {
             if (entry.getValue() != 0) {
                 answer = entry.getKey();
