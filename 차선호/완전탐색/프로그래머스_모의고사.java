@@ -1,10 +1,8 @@
-package com.study02.PgMTest;
-//프로그래머스-모의고사
-
 import java.util.*;
+import java.io.*;
 
-public class PgMTest {
-	public int[] solution(int[] answers) {
+class Solution {
+    public int[] solution(int[] answers) {
 		int cnt = 0;
 		int[] student1 = {1,2,3,4,5};
 		int[] student2 = {2,1,2,3,2,4,2,5};

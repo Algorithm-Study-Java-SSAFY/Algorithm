@@ -1,9 +1,8 @@
-package com.study02.Bj1920;
-
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
-public class Bj1920 {
+public class Main {
+
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int N = Integer.parseInt(br.readLine());
