@@ -1,3 +1,5 @@
+package testBack;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,7 +10,6 @@ public class Main {
         int N, M;
         int[] useMoney;
         int k = 0;
-        int max_use = 0;
 
         String[] tmp = br.readLine().split(" ");
         N = Integer.parseInt(tmp[0]);
@@ -17,10 +18,9 @@ public class Main {
 
         for (int i = 0; i < N; i++) {
             useMoney[i] = Integer.parseInt(br.readLine());
-            max_use = Math.max(max_use, useMoney[i]);
         }
 
-        int start = max_use;
+        int start = 0;
         int end = (int) 1e9;
 
         while (start <= end) {
@@ -32,14 +32,17 @@ public class Main {
                     money -= useMoney[i];
                 } else {
                     money = mid - useMoney[i];
+                    if (money < 0) {
+                        turn += M;
+                    }
                     turn++;
                 }
             }
-            if (turn < M) {
-                end = mid - 1;
-            } else {
-                k = mid;
+            if (turn > M) {
                 start = mid + 1;
+            } else {
+                end = mid - 1;
+                k = mid;
             }
 
         }
