@@ -1,5 +1,3 @@
-package study_01.Bj11279;
-
 import java.util.*;
 import java.io.*;
 

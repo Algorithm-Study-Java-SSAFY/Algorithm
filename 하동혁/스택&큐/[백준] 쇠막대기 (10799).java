@@ -1,5 +1,3 @@
-package study_01.Bj10799;
-
 import java.awt.print.Printable;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -21,12 +19,12 @@ public class Main {
 
 		for (int i = 0; i < data.length(); i++) {
 			char check = data.charAt(i);
-			if (check == '(') { // Ã¶ÆÇ Ãß°¡
+			if (check == '(') { // ì² íŒ ì¶”ê°€
 				st.push('(');
 				answer += 1;
-			} else if (check == ')' && data.charAt(i-1) == ')') { // Ã¶ÆÇ Á¦°Å
+			} else if (check == ')' && data.charAt(i-1) == ')') { // ì² íŒ ì œê±°
 				st.pop();
-			} else if (check == ')' && st.peek() == '(') { // ·¹ÀÌÀúÀÏ¶§ -> '(' ÇÏ³ª Á¦°Å && Ã¶ÆÇ Àı¹İÀ» ³ª´®
+			} else if (check == ')' && st.peek() == '(') { // ë ˆì´ì €ì¼ë•Œ -> '(' í•˜ë‚˜ ì œê±° && ì² íŒ ì ˆë°˜ì„ ë‚˜ëˆ”
 				st.pop();
 				answer -= 1;
 				answer += st.size();

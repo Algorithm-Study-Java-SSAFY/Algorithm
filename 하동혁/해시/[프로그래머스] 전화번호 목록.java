@@ -1,14 +1,12 @@
-package study_01.Prg_phoneNumber;
-
 import java.util.*;
 
 class Solution {
     public boolean solution(String[] phone_book) {
         boolean answer = true;
         
-        // ¹®ÀÚ¿­ ±æÀÌ ¼øÀ¸·Î Á¤·Ä - phone_book (100¸¸)
-        // key °ªÀ» ÀüÈ­¹øÈ£ °ªÀ¸·Î ÀÛÀº ¼øÀ¸·Î ³Ö´Â´Ù. 
-        // ÀÌ¶§ ³ÖÀ» ÀüÈ­¹øÈ£¸¦ 1ÀÚ¸® ¼ö ºÎÅÍ 1¾¿ Áõ°¡ÇØ °¡¸ç Á¢µÎ¾î°¡ °ãÄ¡´Â Å°°¡ ÀÖ´ÂÁö È®ÀÎÇÑ´Ù. 
+        // ë¬¸ìì—´ ê¸¸ì´ ìˆœìœ¼ë¡œ ì •ë ¬ - phone_book (100ë§Œ)
+        // key ê°’ì„ ì „í™”ë²ˆí˜¸ ê°’ìœ¼ë¡œ ì‘ì€ ìˆœìœ¼ë¡œ ë„£ëŠ”ë‹¤. 
+        // ì´ë•Œ ë„£ì„ ì „í™”ë²ˆí˜¸ë¥¼ 1ìë¦¬ ìˆ˜ ë¶€í„° 1ì”© ì¦ê°€í•´ ê°€ë©° ì ‘ë‘ì–´ê°€ ê²¹ì¹˜ëŠ” í‚¤ê°€ ìˆëŠ”ì§€ í™•ì¸í•œë‹¤. 
         
         Arrays.sort(phone_book, Comparator.comparing(String::length));
         
