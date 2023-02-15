@@ -1,10 +1,6 @@
-package com.study02.PgKNum;
-// 프로그래머스 -k번째 수
-
 import java.util.*;
-
-public class PgKNum {
-	public int[] solution(int[] array, int[][] commands) {
+class Solution {
+    public int[] solution(int[] array, int[][] commands) {
 		int[] answer = new int[commands.length];
         
 		for(int m=0;m<commands.length;m++) {

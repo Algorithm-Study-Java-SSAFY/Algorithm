@@ -15,12 +15,11 @@ public class Bj11279 {
 			if (op == 0) {
 //				if (maxHip.size()==0)System.out.println(0);
 //				else System.out.println(maxHip.poll());
-				sb.append(maxHip.size() == 0 ? 0 : maxHip.poll());
+				sb.append(maxHip.size() == 0 ? 0 : maxHip.poll()).append('\n');
 			}else {
 				maxHip.add(op);
 			}
-			
-			System.out.println(sb.toString());
 		}
+		System.out.println(sb.toString());
 	}
 }
