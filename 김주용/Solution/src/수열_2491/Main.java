@@ -16,7 +16,7 @@ public class Main {
 		int[] acendDp = new int[N+1];
 		int[] decendDp = new int[N+1];
 		acendDp[0] = 1;
-		decendDp[0] = 1;
+		decendDp[0] = 1; 
 		for(int i = 1; i < N; i++) {
 			if(line[i] >= line[i-1]) {
 				acendDp[i] = acendDp[i-1] + 1;
@@ -24,6 +24,7 @@ public class Main {
 			} else {
 				acendDp[i] = 1;
 			}
+			
 			if(line[i] <= line[i-1]) {
 				decendDp[i] = decendDp[i-1] + 1;
 				decend = Math.max(decend, decendDp[i]);
