@@ -1,4 +1,4 @@
-package 문자열.String;
+package 수업.문자열.String;
 
 import java.io.BufferedReader;
 import java.io.IOException;

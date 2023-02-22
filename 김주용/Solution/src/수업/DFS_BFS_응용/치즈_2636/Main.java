@@ -1,4 +1,4 @@
-package DFS_BFS_응용.치즈_2636;
+package 수업.DFS_BFS_응용.치즈_2636;
 
 import java.io.BufferedReader;
 import java.io.IOException;

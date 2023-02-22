@@ -1,4 +1,4 @@
-package DFS_BFS_응용.보물섬_2589;
+package 수업.DFS_BFS_응용.보물섬_2589;
 
 import java.io.BufferedReader;
 import java.io.IOException;

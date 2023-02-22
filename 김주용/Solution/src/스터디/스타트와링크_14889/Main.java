@@ -1,4 +1,4 @@
-package 스타트와링크_14889;
+package 스터디.스타트와링크_14889;
 
 import java.io.*;
 import java.util.ArrayList;

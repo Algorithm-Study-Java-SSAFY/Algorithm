@@ -1,4 +1,4 @@
-package 완주하지못한선수;
+package 스터디.완주하지못한선수;
 
 import java.util.*;
 

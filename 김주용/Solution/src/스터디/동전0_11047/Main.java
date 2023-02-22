@@ -1,4 +1,4 @@
-package 동전0_11047;
+package 스터디.동전0_11047;
 
 import java.io.BufferedReader;
 import java.io.IOException;

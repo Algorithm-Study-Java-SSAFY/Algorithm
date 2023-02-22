@@ -1,4 +1,4 @@
-package 수찾기_1920;
+package 스터디.수찾기_1920;
 
 import java.io.*;
 import java.util.Arrays;

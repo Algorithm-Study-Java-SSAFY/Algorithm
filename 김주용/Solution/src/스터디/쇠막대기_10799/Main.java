@@ -1,4 +1,4 @@
-package 쇠막대기_10799;
+package 스터디.쇠막대기_10799;
 
 import java.io.*;
 import java.util.Stack;

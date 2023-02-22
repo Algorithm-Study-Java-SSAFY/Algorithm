@@ -1,4 +1,4 @@
-package 배열1.Flatten;
+package 수업.배열1.Flatten;
 
 import java.io.BufferedReader;
 import java.io.IOException;

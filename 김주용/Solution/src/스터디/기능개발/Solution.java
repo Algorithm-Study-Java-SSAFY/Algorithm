@@ -1,4 +1,4 @@
-package 기능개발;
+package 스터디.기능개발;
 
 import java.util.Arrays;
 import java.util.LinkedList;

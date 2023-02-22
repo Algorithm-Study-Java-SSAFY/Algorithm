@@ -1,4 +1,4 @@
-package 가장큰수;
+package 스터디.가장큰수;
 
 
 import java.util.*;

@@ -1,4 +1,4 @@
-package 피보나치수_2748;
+package 스터디.피보나치수_2748;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

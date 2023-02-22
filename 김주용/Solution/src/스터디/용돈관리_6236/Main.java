@@ -1,4 +1,4 @@
-package 용돈관리_6236;
+package 스터디.용돈관리_6236;
 
 import java.io.BufferedReader;
 import java.io.IOException;

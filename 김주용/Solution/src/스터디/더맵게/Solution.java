@@ -1,4 +1,4 @@
-package 더맵게;
+package 스터디.더맵게;
 
 import java.util.*;
 

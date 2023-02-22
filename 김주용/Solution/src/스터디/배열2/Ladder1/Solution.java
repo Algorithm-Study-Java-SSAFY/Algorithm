@@ -1,4 +1,4 @@
-package 배열2.Ladder1;
+package 스터디.배열2.Ladder1;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

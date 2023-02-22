@@ -1,4 +1,4 @@
-package 모의고사;
+package 스터디.모의고사;
 
 import java.util.ArrayList;
 import java.util.List;

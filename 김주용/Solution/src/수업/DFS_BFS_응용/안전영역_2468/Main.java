@@ -1,4 +1,4 @@
-package DFS_BFS_응용.안전영역_2468;
+package 수업.DFS_BFS_응용.안전영역_2468;
 
 import java.io.BufferedReader;
 import java.io.IOException;

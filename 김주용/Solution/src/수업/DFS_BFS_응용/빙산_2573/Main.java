@@ -1,4 +1,4 @@
-package DFS_BFS_응용.빙산_2573;
+package 수업.DFS_BFS_응용.빙산_2573;
 
 import java.io.BufferedReader;
 import java.io.IOException;

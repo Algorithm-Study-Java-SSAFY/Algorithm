@@ -1,4 +1,4 @@
-package 배열1.View;
+package 수업.배열1.View;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

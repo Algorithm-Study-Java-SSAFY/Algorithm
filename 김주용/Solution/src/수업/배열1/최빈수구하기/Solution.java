@@ -1,4 +1,4 @@
-package 배열1.최빈수구하기;
+package 수업.배열1.최빈수구하기;
 
 import java.io.BufferedReader;
 import java.io.IOException;

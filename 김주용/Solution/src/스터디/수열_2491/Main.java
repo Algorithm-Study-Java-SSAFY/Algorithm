@@ -1,4 +1,4 @@
-package 수열_2491;
+package 스터디.수열_2491;
 
 import java.io.BufferedReader;
 import java.io.IOException;

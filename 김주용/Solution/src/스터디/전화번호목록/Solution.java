@@ -1,4 +1,4 @@
-package 전화번호목록;
+package 스터디.전화번호목록;
 
 import java.util.HashMap;
 

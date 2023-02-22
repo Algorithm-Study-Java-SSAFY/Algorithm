@@ -1,4 +1,4 @@
-package 체육복;
+package 스터디.체육복;
 
 import java.util.Arrays;
 
