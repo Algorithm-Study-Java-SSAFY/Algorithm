@@ -1,4 +1,4 @@
-package 스터디.배열2.Sum;
+package 수업.배열2.Sum;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
