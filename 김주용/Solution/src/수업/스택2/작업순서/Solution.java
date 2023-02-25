@@ -4,8 +4,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 /*
    사용하는 클래스명이 Solution 이어야 하므로, 가급적 Solution.java 를 사용할 것을 권장합니다.
@@ -21,6 +23,8 @@ class Solution {
 
 		System.setIn(new FileInputStream("res/input.txt"));
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
+		
 		int T = 10;
 		for (int test_case = 1; test_case <= T; test_case++) {
 			String[] line = in.readLine().split(" ");
@@ -35,9 +39,10 @@ class Solution {
 				table[b] += 1;
 			}
 			String answer = solution();
-			System.out.printf("#%d %s\n", test_case, answer);
-
+			out.append("#" + test_case + " " + answer);
 		}
+		in.close();
+		out.close();
 	}
 
 	public static String solution() {
