@@ -27,15 +27,23 @@ public class Main {
 	}
 	
 	public static void solution() {
-		Arrays.sort(topHeights);
+		Arrays.sort(topHeights);	
 		Arrays.sort(botHeights);
 		
+		/*
+		 * 장애물 정렬 : 현재 높이에서 얼만큼 부수는지 이분 탐색으로 찾아야 함. 
+		 * -> 현재 높이보다 장애물이 커지는 구간. 
+		 */
 		for(int i = 1; i <= H; i++) {
 			int topIdx = Arrays.binarySearch(topHeights, i);
 			int botIdx = Arrays.binarySearch(botHeights, i);
 			System.out.println(i);
 			System.out.println(topIdx + " " + botIdx);
 		}
+	}
+	
+	public static void binarySearch(int height) {
+		
 	}
 
 }
