@@ -26,7 +26,7 @@ public class Main {
 		for (int i = 1; i <= 5 && i <= visited.length; i++) {
 			combination(visited, 0, operator_cnt, i);
 		}
-
+		
 		bw.write(String.valueOf(max_result));
 
 		br.close();
@@ -38,7 +38,7 @@ public class Main {
 			List<Integer> selected = new ArrayList<>();
 			for (int i = visited.length - 1, now = -1; i >= 0; i--) {
 				if (visited[i]) {
-
+					
 					// 괄호가 중첩된다면 pass
 					if (selected.size() >= 1 && selected.get(now) == i + 1) {
 						selected.clear();
@@ -66,7 +66,6 @@ public class Main {
 	}
 
 	public static void addAndCalcul(List<Integer> idx_list) {
-		int result = 0;
 		fomula = new ArrayList<>();
 		fomula.addAll(Arrays.asList(s));
 
@@ -82,23 +81,45 @@ public class Main {
 			fomula.remove(idx + 1);
 			fomula.remove(idx + 1);
 		}
-
-		// 전체 계산
-		if (fomula.size() == 1) {
-			result = Integer.parseInt(fomula.get(0));
-		} else {
-			int p1 = Integer.parseInt(fomula.remove(0));
-			String o = fomula.remove(0);
-			int p2 = Integer.parseInt(fomula.remove(0));
-			result = Calculator(p1, o, p2);
-			while (!fomula.isEmpty()) {
-				o = fomula.remove(0);
-				p2 = Integer.parseInt(fomula.remove(0));
-				result = Calculator(result, o, p2);
+		
+		// 후위표기식 생성
+		
+		
+		Stack<String> stack = new Stack<>();
+		List<String> posterior = new ArrayList<>();
+		for (int i = 0; i < fomula.size(); i++) {
+			String target = fomula.get(i);
+			if (target.equals("-") || target.equals("+") || target.equals("*")) {
+				if (stack.isEmpty())
+					stack.push(target);
+				else {
+					while (!stack.isEmpty() && priority.get(stack.peek()) >= priority.get(target)) {
+						posterior.add(stack.pop());
+					}
+					stack.push(target);
+				}
+			} else {
+				posterior.add(target);
 			}
 		}
-
+		while (!stack.isEmpty()) {			
+			posterior.add(stack.pop());
+		}
+		
+		// 후위표기식 계산
+		for (int i = 0; i < posterior.size(); i++) {
+			String target = String.valueOf(posterior.get(i));
+			if (target.equals("-") || target.equals("+") || target.equals("*")) {
+				int p2 = Integer.parseInt(stack.pop());
+				int p1 = Integer.parseInt(stack.pop());
+				stack.push(String.valueOf(Calculator(p1, target, p2)));
+			} else {
+				stack.push(target);
+			}
+		}
+		
 		// 최댓값 업데이트
+		int result = Integer.parseInt(stack.pop());
 		max_result = result > max_result ? result : max_result;
 	}
 
