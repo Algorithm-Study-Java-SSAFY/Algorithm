@@ -3,7 +3,7 @@ import java.util.*;
 import java.util.concurrent.SynchronousQueue;
 
 public class Main {
-	static int max_result = 0;
+	static int max_result = Integer.MIN_VALUE;
 	static List<String> fomula;
 	static String[] s;
 	static HashMap<String, Integer> priority = new HashMap<>();
@@ -26,6 +26,8 @@ public class Main {
 		for (int i = 1; i <= 5 && i <= visited.length; i++) {
 			combination(visited, 0, operator_cnt, i);
 		}
+		
+		bw.write(String.valueOf(max_result));
 
 		br.close();
 		bw.close();
@@ -48,11 +50,7 @@ public class Main {
 			}
 
 			if (!selected.isEmpty()) {
-				// 함수
-				System.out.println(selected.toString());
 				addAndCalcul(selected);
-				System.out.println("max: " + max_result);
-				System.out.println();
 			}
 			return;
 		}
@@ -85,8 +83,6 @@ public class Main {
 		}
 		
 		// 후위표기식 생성
-		
-		
 		Stack<String> stack = new Stack<>();
 		List<String> posterior = new ArrayList<>();
 		for (int i = 0; i < fomula.size(); i++) {
@@ -107,7 +103,6 @@ public class Main {
 		while (!stack.isEmpty()) {			
 			posterior.add(stack.pop());
 		}
-		System.out.println(posterior);
 		
 		// 후위표기식 계산
 		for (int i = 0; i < posterior.size(); i++) {
@@ -123,7 +118,6 @@ public class Main {
 		
 		// 최댓값 업데이트
 		int result = Integer.parseInt(stack.pop());
-		System.out.println("result :" + result);
 		max_result = result > max_result ? result : max_result;
 	}
 
