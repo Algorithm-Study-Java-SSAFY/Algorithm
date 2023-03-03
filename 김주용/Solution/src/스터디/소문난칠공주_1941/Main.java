@@ -39,7 +39,7 @@ public class Main {
 		if (r == 0) {
 			if (check(visited)) {
 				answer++;
-			}
+			} 
 			return;
 		}
 
