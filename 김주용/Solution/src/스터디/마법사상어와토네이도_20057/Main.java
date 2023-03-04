@@ -2,18 +2,23 @@ package 스터디.마법사상어와토네이도_20057;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Random;
 import java.util.stream.Stream;
-
-import javax.security.auth.x500.X500Principal;
-
-import SWExpert.최대상금_1244.Solution;
 
 public class Main {
 	// 왼 아래 오 위
 	static int[] dy = { 0, 1, 0, -1 };
 	static int[] dx = { -1, 0, 1, 0 };
 
+	static int[][][] rateBoards;
+	static int[][] leftRateBoard = { 
+			{ 0, 0, 2, 0, 0 }, 
+			{ 0, 10, 7, 1, 0 }, 
+			{ 5, 0, 0, 0, 0 }, 
+			{ 0, 10, 7, 1, 0 },
+			{ 0, 0, 2, 0, 0 } 
+			};
+	
+	
 	static int N;
 	static int[][] board;
 
@@ -27,136 +32,77 @@ public class Main {
 			board[i] = Stream.of(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
 		}
 		
-		tornado();
+		solution();
 
 	}
+	
+	public static void solution() {
+		rateBoards = new int[5][5][4];	// 왼 -> 아래 -> 오 -> 위 순으로 
+		rateBoards[0] = leftRateBoard;
+		for(int i = 1; i < 4; i++) {
+			rateBoards[i] = rotate90(rateBoards[i-1]);
+		}
+		tornado();
+	}
 
-	/*
-	 * 1 1 -> 2 2 -> 3 3 -> 4 4 -> 6 6 - > 7 만큼 방향마다 가게 됨
-	 */
+	// 토네이도 진행: 1 1 -> 2 2 -> 3 3 -> 4 4 -> 6 6 - > 7  진행 칸 수가 2번 반복 후 1 증가  
 	public static void tornado() {
 		int initSand = getSand();
 		int y = N / 2, x = N / 2;
 		int canGO = 0;
-		int k = 0, curD = 0;
-		int answer = 0;
-		int c = 0;
-		while (k < 2 * N - 1) { // 마지막은 한번만
-			if (k % 2 == 0) { // 현재 방향에서 진행하는 칸 수
+		int step = 0, curD = 0;
+
+		while (step < 2 * N - 1) { // 마지막은 한번만
+			if (step % 2 == 0) { // 현재 방향에서 진행하는 칸 수
 				canGO++;
 			}
-			for (int i = 0; i < canGO; i++) { // 한칸 이동
+			for (int i = 0; i < canGO; i++) { // 칸 수 만큼 현재 방향으로 이동
 				int ny = y + dy[curD], nx = x + dx[curD];
 				if (-1 < ny && ny < N && -1 < nx && ny < N) {
-					if (curD == 0 || curD == 2) {
-						moveSandVertical(y, x, ny, nx, curD, board[ny][nx]);
-					} else {
-						moveSandHorizon(y, x, ny, nx, curD, board[ny][nx]);
-					}
-					debug(y + " " + x + " " + ny + " " + nx + " " + curD + " " + c);
-					c++;
+					moveSand(ny, nx, curD, board[ny][nx]);
 					y = ny;
 					x = nx;
 				}
 			}
 			curD = (curD + 1) % 4; // 방향 전환
-			k++;
+			step++;
 		}
-		int remainSand = getSand();
-		System.out.println(initSand + " " + remainSand);
-		int ret = initSand - remainSand;
+		
+		int finalSand = getSand();
+		int ret = initSand - finalSand;
 		System.out.println(ret);
 	}
 
-	// cur -> next 로 이동할 때 next의 모래가 비율과 그 나머지 만큼 이동함.
-	public static void moveSandVertical(int curY, int curX, int nextY, int nextX, int curD, int sand) {
-		int tempSand = sand;
-		board[nextY][nextX] = 0;
-		int[] startDy = { -1, -2, -1, 0 };
-		int[] endDy = { 1, 2, 1, 0 };
-		Double[] ratio = { 0.01, 0.07, 0.1, 0.05 };
-
-		for (int i = 0; i < 4; i++) {
-			// System.out.print(curX + ": ");
-			for (int y = startDy[i]; y <= endDy[i]; y++) {
-				double r = (y == -2 || y == 2) ? 0.02 : ratio[i];
-				double curSand = Math.floor(sand * r);
-				if (i < 3 && y == 0) {
-					continue;
-				}
-				if (curY + y < 0 || curY + y >= N) {
-					tempSand -= curSand;
-					continue;
-				}
-				
-				if(curY + y == N/2 && curX == N / 2) {
-					continue;
-				}
-
-				board[curY + y][curX] += curSand;
-				tempSand -= curSand;
-
+	// 모래 이동: (y의 좌표,현재 방향, y의 모래양)  
+	public static void moveSand(int yY, int yX, int curD, int sand) {
+		int remain = sand;
+		for(int i = 0; i < 5; i++) {
+			for(int j = 0; j < 5; j++) {
+				if(rateBoards[curD][i][j] <= 0) continue;
+				int ty = i - 2 + yY, tx = j - 2 + yX;	// 5x5 고정된 사이즈로 비율을 저장중인 2차원 배열을 현재 진행중인 2차원 배열 좌표에 맞게 변환 
+				int move = (int) Math.floor(sand * rateBoards[curD][i][j] * 0.01);
+				if(-1 < ty && ty < N && -1 < tx && tx < N) {
+					board[ty][tx] += move;
+				} 
+				remain -= move;
 			}
-
-			curX += dx[curD];
-			if (curX < 0 || curX >= N)
-				break;
 		}
-		int alphaX = nextX + dx[curD];
-		if (-1 < alphaX && alphaX < N && !(alphaX == N/2 && curY == N/2) ) {
-			board[curY][alphaX] += tempSand;
-			System.out.println(curY + " " + alphaX + " " + tempSand);
+		int aY = yY + dy[curD], aX = yX + dx[curD];
+		if(-1 < aY && aY < N && -1 < aX && aX < N) {
+			board[aY][aX] += remain;
 		}
+		board[yY][yX] = 0;
 	}
-
-	public static void moveSandHorizon(int curY, int curX, int nextY, int nextX, int curD, int sand) {
-		int tempSand = sand;
-		board[nextY][nextX] = 0;
-		int[] startDx = { -1, -2, -1, 0 };
-		int[] endDx = { 1, 2, 1, 0 };
-		Double[] ratio = { 0.01, 0.07, 0.1, 0.05 };
-
-		for (int i = 0; i < 4; i++) {
-			;
-			for (int x = startDx[i]; x <= endDx[i]; x++) {
-				double r = (x == -2 || x == 2) ? 0.02 : ratio[i];
-				double curSand = Math.floor(sand * r);
-
-				if (i < 3 && x == 0)
-					continue;
-				if (curX + x < 0 || curX + x >= N) {
-					tempSand -= curSand;
-					continue;
-				}
-				if(curX + x == N/2 && curY == N / 2) {
-					continue;
-				}
-
-				board[curY][curX + x] += curSand;
-				tempSand -= curSand;
-
+	
+	// 반 시계 방향 2차원 배열 돌리기 
+	public static int[][] rotate90(int[][] originBoard) {
+		int[][] ret = new int[5][5];
+		for(int i = 0; i < 5; i++) {
+			for(int j = 0; j < 5; j++ ) {
+				ret[i][j] = originBoard[j][4-i];
 			}
-
-			curY += dy[curD];
-			if (curY < 0 || curY >= N)
-				break;
 		}
-		int alphaY = nextY + dy[curD];
-		if (-1 < alphaY && alphaY < N && !(alphaY == N/2 && curX == N/2)) {
-			board[alphaY][curX] += tempSand;
-		}
-	}
-
-	public static void debug(String msg) {
-		System.out.println(msg);
-		System.out.println("----");
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < N; j++) {
-				System.out.print(board[i][j] + " ");
-			}
-			System.out.println(" ");
-		}
-		System.out.println(" ");
+		return ret;
 	}
 
 	public static int getSand() {
