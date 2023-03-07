@@ -77,7 +77,7 @@ public class Main {
 	public static void moveSand(int yY, int yX, int curD, int sand) {
 		int remain = sand;
 		for(int i = 0; i < 5; i++) {
-			for(int j = 0; j < 5; j++) {
+			for(int j = 0; j < 5; j++) { 
 				if(rateBoards[curD][i][j] <= 0) continue;
 				int ty = i - 2 + yY, tx = j - 2 + yX;	// 5x5 고정된 사이즈로 비율을 저장중인 2차원 배열을 현재 진행중인 2차원 배열 좌표에 맞게 변환 
 				int move = (int) Math.floor(sand * rateBoards[curD][i][j] * 0.01);
