@@ -40,7 +40,8 @@ public class Solution {
 			}
 			stack.add(cur);
 		}
-		Iterator iter = stack.iterator();
+		
+		Iterator<Character> iter = stack.iterator();
 		while(iter.hasNext()) {
 			ret += iter.next();
 		}
