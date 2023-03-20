@@ -15,7 +15,7 @@ public class Solution {
 		int T = 10;
 
 		for (int test_case = 1; test_case <= T; test_case++) {
-			int t = Integer.parseInt(in.readLine());
+			Integer.parseInt(in.readLine());
 			String[] line = in.readLine().split(" ");
 			int N = Integer.parseInt(line[0]), M = Integer.parseInt(line[1]);
 			answer = 0;
