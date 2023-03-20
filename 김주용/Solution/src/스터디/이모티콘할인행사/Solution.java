@@ -1,7 +1,7 @@
 package 스터디.이모티콘할인행사;
 
 public class Solution {
-
+	
 	static int retNum = 0;
 	static int retMoney = 0;
 
@@ -36,12 +36,13 @@ public class Solution {
 	}
 
 	public static void getResult(int[][] users, int[] emoticons, int[] curRates) {
+		// 할인한 가격 
 		int M = emoticons.length;
 		int[] prices = new int[M];
 		for (int i = 0; i < M; i++) {
 			prices[i] = (100 - curRates[i]) * emoticons[i] / 100;
 		}
-
+		// 이모티콘 플러스 가입자 수, 총 금액 
 		int num = 0;
 		int money = 0;
 		for (int[] user : users) {
