@@ -2,61 +2,50 @@ package 스터디.부분합_1806;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.stream.Stream;
 
 public class Main {
-	
+
 	static int N;
 	static int S;
-	
+
 	static int[] nums;
-	static int M;
-	
-	static int answer = 0;
-	
+	static int answer = Integer.MAX_VALUE;
+
 	public static void main(String[] args) throws Exception {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		int[] line = Stream.of(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-		N = line[0];
-		S = line[1];
-		
-		nums = Stream.of(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-		M = nums.length;
-		
-		solution();
+		String[] line = in.readLine().split(" ");
+		N = Integer.parseInt(line[0]);
+		S = Integer.parseInt(line[1]);
+
+		nums = new int[N + 1];
+		line = in.readLine().split(" ");
+		for (int i = 0; i < N; i++) {
+			nums[i] = Integer.parseInt(line[i]);
+		}
+
+		System.out.println(solution());
 	}
-	
-	public static void solution() {
-		// 누적합 구하기
-		int[] sums = new int[M];
-		sums[0] = nums[0];
-		for(int i = 1; i < M; i++) {
-			sums[i] = sums[i-1] + nums[i];
-		}
-		// 계산 
-		//System.out.println(Arrays.toString(sums));
-		int window = 1;
-		
-		loop:
-		while(window < M) {
-			for(int right = M-1; right >= window; right--) {
-				int left = right - window;
-				System.out.println(left + " " + right);
-				if(left < 0) { // 맨 앞 까지 
-					left = 0;
-				}
-				int partSum = sums[right] - sums[left];
-				System.out.println(partSum);
-				if (partSum >= S) {
-					answer = window;
-					break loop;
-				}
+
+	public static int solution() {
+		int left = 0;
+		int right = 0;
+		int sum = 0;
+		int length = 0;
+		while (right <= N) {
+			if (sum < S) { // 조건 만족할 때 까지 오른쪽 증가
+				sum += nums[right];
+				right += 1;
+			} else { // 조건 만족하면 왼쪽 포인터 증가
+				sum -= nums[left];
+				length = right - left;
+				left += 1;
+				answer = Math.min(answer, length);
 			}
-			
-			window++;
 		}
-	
-		System.out.println(answer);
+		if (answer == Integer.MAX_VALUE) {
+			return 0;
+		}
+
+		return answer;
 	}
 }
