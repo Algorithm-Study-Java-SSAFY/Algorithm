@@ -1,4 +1,4 @@
-package SWExpert.최대상금_1244;
+package 수업.완전탐색_그리드.최대상금;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -48,7 +48,6 @@ public class Solution {
 		if(cnt == change) {	
 			answer = Math.max(answer, retNum);
 		}
-		
 		if(retNum == maxRet) {	// 최대 구할 수 있는 거랑 같으면  
 			change = (change - cnt) % 2;
 			if(change == 0) {	// swap이 짝수 회 만큼 남았으면 그대로 종료
