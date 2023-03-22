@@ -12,14 +12,14 @@ public class Solution {
 	static String[] board;
 
 	static HashMap<Character, String> binaryMap = new HashMap<Character, String>() {{
-		put('0', "0");
-		put('1', "1");
-		put('2', "10");
-		put('3', "11");
-		put('4', "100");
-		put('5', "101");
-		put('6', "110");
-		put('7', "111");
+		put('0', "0000");
+		put('1', "0001");
+		put('2', "0010");
+		put('3', "0011");
+		put('4', "0100");
+		put('5', "0101");
+		put('6', "0110");
+		put('7', "0111");
 		put('8', "1000");
 		put('9', "1001");
 		put('A', "1010");
@@ -46,7 +46,7 @@ public class Solution {
 	};
 
 	public static void main(String[] args) throws Exception {
-		System.setIn(new FileInputStream("res/sample_input.txt"));
+		System.setIn(new FileInputStream("res/input.txt"));
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
 		int T = Integer.parseInt(in.readLine());

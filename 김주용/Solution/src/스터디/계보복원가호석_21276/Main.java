@@ -45,7 +45,7 @@ public class Main {
 			String[] line = in.readLine().split(" ");
 			int X = nameToNum.get(line[0]);
 			int Y = nameToNum.get(line[1]);
-			graph.get(X).add(Y); // X에 대한 부모 추가 
+			graph.get(X).add(Y); // X의 부모 추가 
 		}
 		solution();
 	}
@@ -56,12 +56,12 @@ public class Main {
 			if(graph.get(i).size() == 0) {	// root
 				roots.add(i);
 			}
-			
+			// 조상이 여러명이면 depth 차이가 1 나는 것이 바로 위 조상 
 			for(int j : graph.get(i)) {
 				int depthX = graph.get(i).size(); // 현재 depth
 				int depthY = graph.get(j).size(); // 조상 depth
 				if(depthX - 1 == depthY) {
-					retGraph.get(j).add(i);
+					retGraph.get(j).add(i); //직전 조상 - 직전 자식 조상 
 				}
 			}	
 		}
