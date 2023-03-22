@@ -16,6 +16,8 @@ public class Main {
 
 	static int answer = 0;
 
+	static int divisor = 10007;
+	
 	public static void main(String[] args) throws Exception {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
@@ -41,34 +43,32 @@ public class Main {
 	}
 
 	private static void solution() {
-		long[][] heights = new long[N][H + 1];
+		long[][] dp = new long[N][H + 1];
 		for(int block : blocks[0]) {
-			heights[0][block] = 1;
+			dp[0][block] = 1;
 		}
 		
 		for (int i = 1; i < N; i++) {
 			for(int h = 1; h <= H; h++) {	
-				heights[i][h] += heights[i-1][h];	// 이전 까지 학생들이 만든 경우 
+				dp[i][h] += (dp[i-1][h] % divisor);	// 1. 이전 까지 학생들이 만든 경우 
 			}
-			for(int cur : blocks[i]) {	// 현재 학생이 가진 블럭으로 만드는 경우
-				heights[i][cur] += 1;
-				if(cur == 0) {
+			for(int cur : blocks[i]) {	
+				dp[i][cur] += 1; // 2. 현재 학생이 가진 블럭으로 만드는 경우
+				if(cur == 0) { // 0으로 더하는 경우는 2.에 포함됨 
 					continue;
 				}
-				System.out.println("this: " + cur);
-				for(int j = 1; j < H+1; j++) { // 현재 블록과 조합해서 만드는 경우 
-						
-					if(heights[i-1][j] > 0 && j + cur <= H) {
-						 System.out.print(j + cur + " ");
-						heights[i][cur + j] += 1;
+				for(int h = 1; h < H; h++) { // 3. 현재 학생이 가진 블럭 높이와 이때까지 만들 수 있던 높이를 더해서 만들어지는 결과  
+					if(dp[i-1][h] > 0 && cur + h <= H) {
+						dp[i][cur + h] += (dp[i-1][h] % divisor);
 					}
 				}
-				System.out.println("");
+				//System.out.println("");
 			}
 		}
-		for(long[] h : heights) {
+		for(long[] h : dp) {
 			System.out.println(Arrays.toString(h));
 		}
+		System.out.println(dp[N-1][H] % divisor);
 	}
 
 }
