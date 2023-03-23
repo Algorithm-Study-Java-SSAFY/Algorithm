@@ -24,7 +24,6 @@ public class Solution {
 	}
 	
 	public static int solution(String line, int N) {
-		int ret = 0;
 		Stack<Character> stack = new Stack<>();
 		stack.add(line.charAt(0));
 		for(int i = 1; i < N; i++) {
