@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-
+//주석
 public class Solution {
  
 	static List<int[]> result = new ArrayList<>();
