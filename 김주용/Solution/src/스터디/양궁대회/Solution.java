@@ -1,91 +1,114 @@
 package 스터디.양궁대회;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class Solution {
+	static class Result implements Comparable<Result> {
+		int score;
+		int[] arrows;
 
-	static int answer = 0;
-	static int maxScore = Integer.MIN_VALUE;
-	static int[] ret;
+		public Result(int score, int[] arrows) {
+			this.score = score;
+			this.arrows = arrows;
+		}
+
+		@Override
+		public int compareTo(Result o) {
+			if (this.score > o.score) {
+				return -1;
+			}
+			if (this.score == o.score) {
+				if (getIndex(o) <= 0) {
+					return -1;
+				}
+			}
+			return 1;
+		}
+
+		public int getIndex(Result o) {
+			int thisIdx = -1;
+			int otherIdx = -1;
+
+			for (int i = 0; i < 11; i++) {
+				if (this.arrows[i] > 0) {
+					thisIdx = i;
+				}
+				if (o.arrows[i] > 0) {
+					otherIdx = i;
+				}
+			}
+			return otherIdx - thisIdx;
+		}
+
+		@Override
+		public String toString() {
+			return "Result [score=" + score + ", arrows=" + Arrays.toString(arrows) + "]";
+		}
+
+	}
+
+	static PriorityQueue<Result> rets = new PriorityQueue<>();
+	static int x = 0;
 
 	public static void main(String[] args) {
 		Solution s = new Solution();
-		s.solution(5, new int[] { 2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 });
-		s.solution(9, new int[] { 0, 0, 1, 2, 0, 1, 1, 1, 1, 1, 1 });
+		 s.solution(5, new int[] { 2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 });
+		// s.solution(9, new int[] { 0, 0, 1, 2, 0, 1, 1, 1, 1, 1, 1 });
+		//s.solution(10, new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 3, 4, 3 });
 
 	}
 
 	public int[] solution(int n, int[] info) {
 		int[] answer = {};
-		ret = new int[11];
+
 		int apeachScore = 0;
 		for (int i = 0; i < 11; i++) {
 			if (info[i] > 0) {
 				apeachScore += (10 - i);
 			}
 		}
-		dfs(n, info, new boolean[11], new int[11], n, 0, apeachScore);
-		System.out.println(Solution.maxScore);
-		System.out.println(Arrays.toString(ret));
-		System.out.println(Solution.answer);
-		answer = ret;
+
+		dfs(0, info, new boolean[11], new int[11], n, 0, apeachScore);
+
+		Result ret = rets.peek();
+		if (ret.score <= 0) {
+			return new int[] { -1 };
+		}
+		System.out.println(ret);
+		System.out.println(x);
+		answer = ret.arrows;
 		return answer;
 	}
 
 	public static void dfs(int n, int[] info, boolean[] visited, int[] arrows, int arrow, int lionScore,
 			int apeachScore) {
 		if (arrow == 0) {
-			answer = Math.max(answer, lionScore - apeachScore);
-			// System.out.println(Arrays.toString(arrows));
-			if (maxScore <= lionScore - apeachScore && isAnswer(arrows) >= 0) {
-				maxScore = lionScore - apeachScore;
-				ret = arrows.clone();
-			}
-
+			x = Math.max(x, lionScore - apeachScore);
+			rets.add(new Result(lionScore - apeachScore, arrows.clone()));
+			System.out.println(Arrays.toString(arrows));
 			return;
 		}
 
-		for (int i = 0; i < 11; i++) {
+		for (int i = n; i < 11; i++) {
 			if (!visited[i]) {
 				visited[i] = true;
-				if (info[i] > 0 && arrow > info[i]) { // 어피치가 맞춘 화살보다 1개 더 많이 맞추기
+				if (arrow >= info[i]) { // 어피치가 맞춘 화살보다 1개 더 많이 맞추는 경우 
 					arrows[i] = info[i] + 1;
-					dfs(n, info, visited, arrows, arrow - arrows[i], lionScore + (10 - i), apeachScore - (10 - i));
-				} else if (arrow == info[i]) { // 똑같이 맞춰서 어피치 점수 무효화 시키기
-					arrows[i] = info[i];
-					dfs(n, info, visited, arrows, arrow - arrows[i], lionScore, apeachScore);
-				} else if (info[i] == 0) { // 1개 맞춰서 점수 먹는 경우
+					dfs(i+1, info, visited, arrows, arrow - arrows[i], lionScore + (10 - i), apeachScore - (10 - i));
+				} 
+				if (info[i] == 0 && arrow > 0) { // 1개 맞춰서 점수 먹는 경우
 					arrows[i] = 1;
-					dfs(n, info, visited, arrows, arrow - arrows[i], lionScore + (10 - i), apeachScore);
-				} else { // 점수 포기
-					arrows[i] = 0;
-					dfs(n, info, visited, arrows, arrow - arrows[i], lionScore, apeachScore);
-				}
+					dfs(i+1, info, visited, arrows, arrow - arrows[i], lionScore + (10 - i), apeachScore);
+				} 
+				// 무시하고 하는 경우 
+				arrows[i] = 0;
+				dfs(i+1, info, visited, arrows, arrow - arrows[i], lionScore, apeachScore);
+				
 				arrows[i] = 0;
 				visited[i] = false;
 			}
 		}
-	}
-	
-	public static int isAnswer(int[] newArrows) {
-		int originIdx = -1;
-		int newIdx = -1;
-
-		for(int i = 0; i < 11; i++) {
-			if(ret[i] > 0) {
-				originIdx = i;
-			}
-			if(newArrows[i] > 0) {
-				newIdx = i;
-			}
-		}
-		if(answer == 29) {
-			System.out.println(Arrays.toString(ret));
-			System.out.println(Arrays.toString(newArrows));
-			System.out.println(originIdx + " " + newIdx);
-			System.out.println(" ");
-		}
-		return newIdx - originIdx;
 	}
 
 }
