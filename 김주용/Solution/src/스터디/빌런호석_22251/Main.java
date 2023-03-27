@@ -1,7 +1,7 @@
 package 스터디.빌런호석_22251;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -15,7 +15,7 @@ public class Main {
 	static int[][] countBoard;
 	static boolean[] visited;
 
-	static HashSet<Integer> set = new HashSet<>();
+	static HashSet<String> set = new HashSet<>();
 	static int answer = 0;
 
 	static HashMap<Integer, String> map = new HashMap<Integer, String>() {
@@ -50,19 +50,17 @@ public class Main {
 		char[] number = X.toCharArray();
 		dfs(number, 0, 0);
 		System.out.println(set.size());
+
 	}
 
 	public static void dfs(char[] number, int cur, int reverseCnt) {
-		if(reverseCnt > 0) {
+		
+		if (cur >= number.length) {
 			String numStr = String.valueOf(number);
 			int numValue = Integer.parseInt(numStr);
 			if (1 <= numValue && numValue <= N && !numStr.equals(X)) {
-				System.out.println(numStr+"//"+reverseCnt);
-				set.add(numValue);
-			}	
-		}
-		
-		if (cur >= number.length) {
+				set.add(numStr);
+			}
 			return;
 		}
 
@@ -105,5 +103,8 @@ public class Main {
 				countBoard[j][i] = cnt;
 			}
 		}
+//		for(int i = 0; i < 10; i++) {
+//			System.out.println(Arrays.toString(countBoard[i]));
+//		}
 	}
 }
