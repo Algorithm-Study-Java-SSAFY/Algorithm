@@ -12,7 +12,6 @@ public class Solution {
 		s.solution(5, new int[] { 2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 });
 		s.solution(9, new int[] { 0, 0, 1, 2, 0, 1, 1, 1, 1, 1, 1 });
 		s.solution(10, new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 3, 4, 3 });
-
 	}
 
 	public int[] solution(int n, int[] info) {
@@ -20,7 +19,7 @@ public class Solution {
 		dfs(n, info, new int[11], 0);
 		System.out.println(maxScore);
 		System.out.println(Arrays.toString(ret));
-		if(maxScore < 0) {
+		if(maxScore <= 0) {
 			return answer;
 		}
 		answer = ret.clone();
@@ -33,10 +32,11 @@ public class Solution {
 			int curScore = getScore(lionInfo, apeachInfo);
 			if (maxScore <= curScore) {
 				if (maxScore == curScore && !isAnswer(lionInfo)) {
+					lionInfo[10] -= n;
 					return;
 				}
 				maxScore = curScore;
-				ret = lionInfo.clone();
+				ret = lionInfo.clone(); 
 			}
 			lionInfo[10] -= n;
 			return;
