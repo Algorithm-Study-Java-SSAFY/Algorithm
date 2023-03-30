@@ -66,7 +66,7 @@ public class Main {
 				visited[i][j] = -1;
 			}
 		}
-		PriorityQueue<Point> queue = new PriorityQueue<>();
+		PriorityQueue<Point> queue = new PriorityQueue<>(); // 벽 개수가 적은거 먼저 
 		queue.add(new Point(startX, startY, 0));
 		visited[startX][startY] = 0;
 
