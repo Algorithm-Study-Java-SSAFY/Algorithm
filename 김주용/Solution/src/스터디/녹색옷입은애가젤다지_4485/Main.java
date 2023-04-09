@@ -55,7 +55,7 @@ public class Main {
 			t++;
 		}
 	}
-
+ 
 	public static void solution() {
 		queue.add(new Point(0, 0, board[0][0]));
 		visited[0][0] = board[0][0];

@@ -52,7 +52,7 @@ public class Main {
 		solution();
 	}
 
-	// DP[i] = DP[i]를 안먹는 경우 vs DP[i]를 먹는 경우
+	// DP[i] = DP[i] 까지 최대 축적량 저장 
 	public static void solution() {
 		getEatInfo();
 		dp[0] = feeds[0] >= K ? feeds[0] - K : 0; // 처음 먹이가 K 이상이면 dp에 저장 
