@@ -32,17 +32,19 @@ public class Solution {
 			culSums[end] -= 1;
 		}
 		
-		for(int i = 1; i <= playTime; i++) { // i 시간에 로그 수 
+		for(int i = 1; i < playTime; i++) { // i 시간에 로그 수 
 			culSums[i] += culSums[i-1];
 		}
 		
-		for(int i = 1; i <= playTime; i++) { // i 시간에 누적 시간 
+		for(int i = 1; i < playTime; i++) { // i 시간에 누적 시간 
 			culSums[i] += culSums[i-1];
 		}
 
-		for(int end = playTime; end >= advTime; end--) { // 마지막 시간 미만 시작 시간은 이상 
+		for(int end = playTime - 1; end >= advTime; end--) { // 마지막 시간 미만 시작 시간은 이상 
 			long sum = culSums[end] - culSums[end - advTime]; 
-			
+			if(end - advTime == 0) {
+				sum = culSums[end];
+			}
 			if(sum >= retSum) {
 				retSum = sum;
 				retStart = end - advTime + 1;
