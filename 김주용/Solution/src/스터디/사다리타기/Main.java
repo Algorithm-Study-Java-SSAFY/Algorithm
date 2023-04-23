@@ -51,6 +51,10 @@ public class Main {
 	// 2 ^ 26 -> 불가
 	public static String soluton() {
 		String answer = "";
+		String fail = "";
+		for(int j = 1; j < K; j++) {
+			fail += "x";
+		}
 		for (int i = 0; i < K; i++) {
 			char cur = starts.charAt(i);
 			int startY = 0, startX = i * 2;
@@ -61,7 +65,7 @@ public class Main {
 			int destY = N-1, destX = destIdx * 2;
 			int dx = goUp(destY, destX);
 			
-			if(sx == dx) {
+			if(Math.abs(sx - dx) == 1) {
 				if(sx - 1 > -1 && board[hide][sx - 1] != '-') {
 					board[hide][sx - 1] = '*';
 				}
@@ -70,7 +74,7 @@ public class Main {
 				}
 			} else if(sx - dx == 2) { // 왼쪽 
 				if(sx - 1 > -1 && board[hide][sx - 1] != '*') {
-					if(sx + 1 >= 2 * K - 1) {
+					if(sx + 1 < 2 * K - 1) {
 						board[hide][sx - 1] = '-';
 					} else if(board[hide][sx + 1] != '-') {
 						board[hide][sx - 1] = '-';
@@ -82,21 +86,12 @@ public class Main {
 				
 			} else if(dx - sx == 2) { // 오른쪽 
 				if(sx - 1 > -1 && board[hide][sx - 1] != '-') {
-					board[hide][sx - 1] = '*';
-				}
-				if(sx - 1 > -1 && sx + 1 < 2 * K - 1 && board[hide][sx + 1] != '*') {
-					if(sx - 1 < 0) {
-						board[hide][sx + 1] = '-';
-					} else if(board[hide][sx - 1] != '-') {
-						board[hide][sx + 1] = '-';
-					}
-				}
-			} 
+				
+			} else { 
+				return fail;
+			}
 		}
-		String fail = "";
-		for(int j = 1; j < K; j++) {
-			fail += "x";
-		}
+
 		
 		for(int i = 1; i < 2 * K - 1; i+=2) {
 			answer += board[hide][i];
